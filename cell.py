@@ -13,7 +13,7 @@ class Cell:
         self._y2 = None
         self._win = window
 
-    def draw(self, x1, y1, x2, y2):
+    def draw(self, x1: int, y1: int, x2: int, y2: int):
         self._x1 = x1
         self._y1 = y1
         self._x2 = x2
@@ -32,6 +32,14 @@ class Cell:
             self._win.draw_line(line)
 
     def draw_move(self, to_cell, undo=False):
-        middle_x = (self._x1 + self._x2) / 2
-        middle_y = (self._y1 + self._y2) / 2
+        mid_xS = (self._x1 + self._x2) // 2
+        mid_yS = (self._y1 + self._y2) // 2
+        mid_xC = (to_cell._x1 + to_cell._x2) // 2
+        mid_yC = (to_cell._y1 + to_cell._y2) // 2
+        line = Line(Point(mid_xS, mid_yS), Point(mid_xC, mid_yC))
+        color = "gray"
+        if undo:
+            color = "red"
+        self._win.draw_line(line, color)
+
         # line = Line(Point(self.))
